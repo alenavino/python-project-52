@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+db.sqlite3
+.env
+dist/
+.coverage
+coverage.xml
+.pytest_cashe/
