@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block container %}
+{% if users %}
   {% for user in users %}
     <div>{{ user.username }}</div>
   {% endfor %}
+{% endif %}
 {% endblock %}
