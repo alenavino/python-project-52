@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+{% block container %}
+<h1 class="my-4">
+{% trans 'Login' %}
+</h1>
+
+{% if form.errors %}
+<ul class="list-unstyled text-danger">
+    <li>
+        {% trans 'Please enter a valid username and password. Both fields may be case sensitive.' %}
+    </li>
+</ul>
+{% endif %}
+
+<form action="{% url 'login' %}" method="post">
+    <input type="hidden" name="csrfmiddlewaretoken" value="VY41VDrT0yfAQgy0KNNB5d4WOUDiOobkMkrhyhAwI1Ff2GanjDcGL1gVvo8DFrYL">
+    <div class="mb-3"><label class="form-label" for="id_username">Имя пользователя</label><input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" class="form-control" placeholder="Имя пользователя" required id="id_username"></div><div class="mb-3"><label class="form-label" for="id_password">Пароль</label><input type="password" name="password" autocomplete="current-password" class="form-control" placeholder="Пароль" required id="id_password"></div>
+    {% csrf_token %}
+    <input class="btn btn-primary" type="submit" value="Войти">
+</form>
+{% endblock %}
