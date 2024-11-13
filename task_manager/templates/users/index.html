@@ -22,11 +22,15 @@
     {% if user %}
       {% for user in users %}
         <tr>
-          <th>{{ user.id }}</th>
-          <th>{{ user.username }}</th>
-          <th>{{ user.first_name }} {{ user.last_name }}</th>
-          <th>{{ user.created_at }}</th>
-          <th></th>
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.first_name }} {{ user.last_name }}</td>
+          <td>{{ user.created_at }}</td>
+          <td>
+            <a href="/users/{{ user.id }}/update/">Изменить</a>
+            <br>
+            <a href="/users/{{ user.id }}/delete/">Удалить</a>
+          </td>
         </tr>
       {% endfor %}
     {% endif %}

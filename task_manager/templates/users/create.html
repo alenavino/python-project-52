@@ -1,7 +1,20 @@
-<form action="{% url 'user_create' %}" method="post">
+{% extends 'base.html' %}
+
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+{% block container %}
+<h1 class="my-4">    
+{% trans 'Registration' %}
+</h1>
+
+<form method="post">
+    <input type="hidden" name="csrfmiddlewaretoken" value="oo218S5HUgW2XJNWs5tJxItlydeEI0CTDAmVtKx8synagnz7GVf9xQheQmYILRHW">
+    <div class="mb-3"><label class="form-label" for="id_first_name">{% trans 'First name' %}</label><input type="text" name="first_name" maxlength="150" class="form-control" placeholder="Имя" required id="id_first_name"></div><div class="mb-3"><label class="form-label" for="id_last_name">{% trans 'Last name' %}</label><input type="text" name="last_name" maxlength="150" class="form-control" placeholder="Фамилия" required id="id_last_name"></div><div class="mb-3"><label class="form-label" for="id_username">{% trans 'Username' %}</label><input type="text" name="username" maxlength="150" autofocus class="form-control" placeholder="Имя пользователя" required aria-describedby="id_username_helptext" id="id_username"><div class="form-text">{% trans 'Required field. No more than 150 characters. Letters, numbers and symbols only' %} @/./+/-/_.</div>
+    <div class="mb-3"><label class="form-label" for="id_password1">{% trans 'Password' %}</label><input type="password" name="password1" autocomplete="new-password" class="form-control" placeholder="Пароль" required aria-describedby="id_password1_helptext" id="id_password1"><div class="form-text"><ul><li>{% trans 'Your password must be at least 3 characters long.' %}</li></ul></div>
+    <div class="mb-3"><label class="form-label" for="id_password2">{% trans 'Confirm password' %}</label><input type="password" name="password2" autocomplete="new-password" class="form-control" placeholder="Подтверждение пароля" required aria-describedby="id_password2_helptext" id="id_password2"><div class="form-text">{% trans 'To confirm, please enter your password again.' %}</div>
     {% csrf_token %}
-    <table border="1">
-    {{ form }}
-    </table>
-    <input type="submit" value="Создать">
+    <input class="btn btn-primary" type="submit" value="Зарегистрировать">
 </form>
+
+{% endblock %}

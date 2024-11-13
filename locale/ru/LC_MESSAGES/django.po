@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-12 13:59+0300\n"
+"POT-Creation-Date: 2024-11-13 14:42+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr "Менеджер задач Hexlet"
 msgid "Task manager"
 msgstr "Менеджер задач"
 
-#: task_manager/templates/base.html:26 task_manager/templates/base.html:45
+#: task_manager/templates/base.html:26 task_manager/templates/base.html:48
 #: task_manager/templates/users/index.html:8
 msgid "Users"
 msgstr "Пользователи"
@@ -45,11 +45,12 @@ msgstr "Метки"
 msgid "Tasks"
 msgstr "Задачи"
 
-#: task_manager/templates/base.html:50 task_manager/templates/login.html:8
+#: task_manager/templates/base.html:53 task_manager/templates/login.html:8
 msgid "Login"
 msgstr "Вход"
 
-#: task_manager/templates/base.html:53
+#: task_manager/templates/base.html:56
+#: task_manager/templates/users/create.html:8
 msgid "Registration"
 msgstr "Регистрация"
 
@@ -66,12 +67,68 @@ msgid "Find out more"
 msgstr "Узнать больше"
 
 #: task_manager/templates/login.html:14
-msgid "Please enter a valid username and password. Both fields may be case sensitive."
-msgstr "Пожалуйста, введите правильные имя пользователя и пароль. Оба поля могут быть чувствительны к регистру."
+msgid ""
+"Please enter a valid username and password. Both fields may be case "
+"sensitive."
+msgstr ""
+"Пожалуйста, введите правильные имя пользователя и пароль. Оба поля могут "
+"быть чувствительны к регистру."
 
+#: task_manager/templates/users/create.html:13
+#: task_manager/templates/users/update.html:13
+msgid "First name"
+msgstr "Имя"
+
+#: task_manager/templates/users/create.html:13
+#: task_manager/templates/users/update.html:13
+msgid "Last name"
+msgstr "Фамилия"
+
+#: task_manager/templates/users/create.html:13
 #: task_manager/templates/users/index.html:15
+#: task_manager/templates/users/update.html:13
 msgid "Username"
 msgstr "Имя пользователя"
+
+#: task_manager/templates/users/create.html:13
+#: task_manager/templates/users/update.html:13
+msgid ""
+"Required field. No more than 150 characters. Letters, numbers and symbols "
+"only"
+msgstr ""
+"Обязательное поле. Не более 150 символов. Только буквы, цифры и символы"
+
+#: task_manager/templates/users/create.html:14
+#: task_manager/templates/users/update.html:14
+msgid "Password"
+msgstr "Пароль"
+
+#: task_manager/templates/users/create.html:14
+#: task_manager/templates/users/update.html:14
+msgid "Your password must be at least 3 characters long."
+msgstr "Ваш пароль должен содержать как минимум 3 символа."
+
+#: task_manager/templates/users/create.html:15
+#: task_manager/templates/users/update.html:15
+msgid "Confirm password"
+msgstr "Подтверждение пароля"
+
+#: task_manager/templates/users/create.html:15
+#: task_manager/templates/users/update.html:15
+msgid "To confirm, please enter your password again."
+msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
+
+#: task_manager/templates/users/delete.html:8
+msgid "Deleting a user"
+msgstr "Удаление пользователя"
+
+#: task_manager/templates/users/delete.html:11
+msgid "Are you sure you want to delete the"
+msgstr "Вы уверены, что хотите удалить"
+
+#: task_manager/templates/users/delete.html:15
+msgid "Yes, delete"
+msgstr "Да, удалить"
 
 #: task_manager/templates/users/index.html:16
 msgid "Full name"
@@ -80,3 +137,21 @@ msgstr "Полное имя"
 #: task_manager/templates/users/index.html:17
 msgid "Creation date"
 msgstr "Дата создания"
+
+#: task_manager/templates/users/update.html:8
+msgid "Change user"
+msgstr "Изменение пользователя"
+
+#: task_manager/users/views.py:25
+msgid "User is successfully registered"
+msgstr "Пользователь успешно зарегистрирован."
+
+#: task_manager/users/views.py:33
+msgid "User Profile is successfully changed"
+msgstr "Пользователь успешно изменен."
+
+#: task_manager/users/views.py:40
+#, fuzzy
+#| msgid "User is successfully registered"
+msgid "User successfully deleted"
+msgstr "Пользователь успешно зарегистрирован."
