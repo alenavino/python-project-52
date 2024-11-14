@@ -60,8 +60,9 @@
       </div>
     </nav>
     <div class="container wrapper flex-grow-1">
-        {% block container %}
-        {% endblock %}
+      {% bootstrap_messages %}
+      {% block container %}
+      {% endblock %}
     </div>
     <footer>
         {% block footer %}
