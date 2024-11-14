@@ -2,14 +2,17 @@ install:
 	poetry install
 
 migrate:
-	python manage.py makemigrations
-	python manage.py migrate
+	poetry run python manage.py makemigrations
+	poetry run python manage.py migrate
 
 start:
-	python3 manage.py runserver
+	poetry run python3 manage.py runserver
 
 local:
 	poetry run django-admin makemessages --ignore="static" --ignore=".env"  -l ru
 
 translate:
 	poetry run django-admin compilemessages
+
+test:
+	poetry run python manage.py test
