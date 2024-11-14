@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from task_manager.users.models import User
 from .forms import UserForm, UserUpdateForm
 from django.urls import reverse_lazy
@@ -6,6 +6,7 @@ from django.views import View
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
+from django.contrib import messages
 
 
 class IndexView(View):
@@ -32,9 +33,39 @@ class UserUpdateView(SuccessMessageMixin, UpdateView):
     success_url = reverse_lazy('users')
     success_message = _('User Profile is successfully changed')
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(
+                request, _('You are not logged in! Please sign in.')
+                )
+            return redirect('login')
+        elif request.user.pk != self.get_object().pk:
+            messages.error(
+                request, _(
+                    'You do not have permission to modify another user.'
+                    )
+                )
+            return redirect('users')
+        return super().dispatch(request, *args, **kwargs)
+
 
 class UserDeleteView(SuccessMessageMixin, DeleteView):
     model = User
     template_name = 'users/delete.html'
     success_url = reverse_lazy('users')
     success_message = _('User successfully deleted')
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(
+                request, _('You are not logged in! Please sign in.')
+                )
+            return redirect('login')
+        elif request.user.pk != self.get_object().pk:
+            messages.error(
+                request, _(
+                    'You do not have permission to modify another user.'
+                    )
+                )
+            return redirect('users')
+        return super().dispatch(request, *args, **kwargs)
