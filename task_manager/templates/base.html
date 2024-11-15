@@ -39,11 +39,10 @@
         </ul>
         <ul class="navbar-nav">
           {% if user.is_authenticated %}
-          <form action="/logout/" method="post">
-            <input type="hidden" name="csrfmiddlewaretoken" value="fskI9VfmSHLEFXHMjFNbsJikpqmSi8zggZp43kr2r8S7wW0n6N9cHoDvRmaW4abL">
-            {% csrf_token %}
-            <input class="btn nav-link" type="submit" value="Выход">
-          </form>
+            <form action="/logout/" method="post">
+              {% csrf_token %}
+              <input class="btn nav-link" type="submit" value="Выход">
+            </form>
           {% else %}
           <li class="nav-item">
             <a class="nav-link" href="/login/">{% trans "Login" %}</a>
