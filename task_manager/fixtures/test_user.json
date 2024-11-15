@@ -1,0 +1,22 @@
+[
+    {
+      "model": "users.user",
+      "pk": 1,
+      "fields": {
+        "first_name": "Tom",
+        "last_name": "Riddle",
+        "username": "Voldemort",
+        "password": "AvadaKedavra"
+      }
+    },
+    {
+      "model": "users.user",
+      "pk": 2,
+      "fields": {
+        "first_name": "Bellatrix",
+        "last_name": "Lestrange",
+        "username": "Bella",
+        "password": "AvadaKedavra"
+      }
+    }
+  ]

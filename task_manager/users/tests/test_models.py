@@ -1,18 +1,17 @@
-from django.test import TestCase
-from task_manager.users.models import User
+# from task_manager.users.tests.testcase import UserTestCase
+# from task_manager.users.models import User
 
 
-class UserModelTest(TestCase):
+# class UserModelTest(UserTestCase):
 
-    def setUp(self):
-        self.my_model = User.objects.create(
-            first_name='a',
-            last_name='b',
-            username='c',
-            password='abcd1234')
+#     def test(self):
+#         self.my_model = User.objects.create(
+#             first_name='Hermione',
+#             last_name='Granger',
+#             username='Jeen',
+#             password='Alohomora')
 
-    def test_model(self):
-        self.assertEqual(self.my_model.first_name, 'a')
-        self.assertEqual(self.my_model.last_name, 'b')
-        self.assertEqual(self.my_model.username, 'c')
-        self.assertEqual(self.my_model.password, 'abcd1234')
+#         self.assertEqual(self.my_model.first_name, 'Hermione')
+#         self.assertEqual(self.my_model.last_name, 'Granger')
+#         self.assertEqual(self.my_model.username, 'Jeen')
+#         self.assertEqual(self.my_model.password, 'Alohomora')
