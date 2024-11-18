@@ -13,7 +13,6 @@
 
 <p>{% trans 'Are you sure you want to delete the' %} {{ user.first_name }} {{ user.last_name }}?</p>
 <form method="post">
-  <input type="hidden" name="csrfmiddlewaretoken" value="8j9MS3kbW5Znilzb48Iv5wQVmT7vYzEOjl5M0pXFfOJoYjKcUOooYN2onJwnYaQx">
   {% csrf_token %}
   <input class="btn btn-danger" type="submit" value="{% trans 'Yes, delete' %}">
 </form>

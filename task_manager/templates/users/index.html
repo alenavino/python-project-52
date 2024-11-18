@@ -3,9 +3,6 @@
 {% load django_bootstrap5 %}
 {% load i18n %}
 
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
 {% block container %}
 <h1 class="my-4">    
 {% trans 'Users' %}
@@ -28,7 +25,7 @@
           <td>{{ user.id }}</td>
           <td>{{ user.username }}</td>
           <td>{{ user.first_name }} {{ user.last_name }}</td>
-          <td>{{ user.created_at }}</td>
+          <td>{{ user.date_joined }}</td>
           <td>
             <a href="/users/{{ user.id }}/update/">Изменить</a>
             <br>

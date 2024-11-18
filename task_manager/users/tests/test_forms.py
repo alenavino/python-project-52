@@ -57,31 +57,31 @@ class UserFormsTest(UserTestCase):
         })
         self.assertTrue(form.is_valid())
 
-        # form = UserUpdateForm(data={
-        #     'first_name': 'Garry',
-        #     'last_name': 'Potter',
-        #     'username': 'Garry',
-        #     'password1': 'ExpectoPatronum',
-        #     'password2': 'PatronumExpecto'
-        # })
-        # self.assertFalse(form.is_valid())
+        form = UserUpdateForm(data={
+            'first_name': 'Garry',
+            'last_name': 'Potter',
+            'username': 'Garry',
+            'password1': 'ExpectoPatronum',
+            'password2': 'PatronumExpecto'
+        })
+        self.assertFalse(form.is_valid())
 
-        # form = UserUpdateForm(data={
-        #     'first_name': 'Garry',
-        #     'last_name': 'Potter',
-        #     'username': 'Garry',
-        #     'password1': 'E',
-        #     'password2': 'E'
-        # })
-        # self.assertFalse(form.is_valid())
+        form = UserUpdateForm(data={
+            'first_name': 'Garry',
+            'last_name': 'Potter',
+            'username': 'Garry',
+            'password1': 'E',
+            'password2': 'E'
+        })
+        self.assertFalse(form.is_valid())
 
-        # form = UserUpdateForm(data={
-        #     'first_name': 'Garry',
-        #     'last_name': 'Potter',
-        #     'username': 'Garry',
-        #     'password1': 'ExpectoPatronum',
-        # })
-        # self.assertFalse(form.is_valid())
+        form = UserUpdateForm(data={
+            'first_name': 'Garry',
+            'last_name': 'Potter',
+            'username': 'Garry',
+            'password1': 'ExpectoPatronum',
+        })
+        self.assertFalse(form.is_valid())
 
         form = UserUpdateForm(data={
             'first_name': 'Garry',
