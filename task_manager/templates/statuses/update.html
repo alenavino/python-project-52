@@ -3,17 +3,17 @@
 {% load django_bootstrap5 %}
 {% load i18n %}
 
-
+{% bootstrap_css %}
+{% bootstrap_javascript %}
 
 {% block container %}
 <h1 class="my-4">    
-{% trans 'Registration' %}
+{% trans 'Change status' %}
 </h1>
 
-<form method="post">
+<form method="post" class="form">
     {% csrf_token %}
     {% bootstrap_form form %}
-    <input class="btn btn-primary" type="submit" value="{% trans 'Registrate' %}">
+    <input class="btn btn-primary" type="submit" value="{% trans 'Update' %}">
 </form>
-
 {% endblock %}

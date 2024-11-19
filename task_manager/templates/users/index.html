@@ -19,7 +19,7 @@
     </tr>
   </thead>
   <tbody>
-    {% if user %}
+    {% if users %}
       {% for user in users %}
         <tr>
           <td>{{ user.id }}</td>
@@ -27,9 +27,9 @@
           <td>{{ user.first_name }} {{ user.last_name }}</td>
           <td>{{ user.date_joined }}</td>
           <td>
-            <a href="/users/{{ user.id }}/update/">Изменить</a>
+            <a href="/users/{{ user.id }}/update/">{% trans 'Update' %}</a>
             <br>
-            <a href="/users/{{ user.id }}/delete/">Удалить</a>
+            <a href="/users/{{ user.id }}/delete/">{% trans 'Delete' %}</a>
           </td>
         </tr>
       {% endfor %}

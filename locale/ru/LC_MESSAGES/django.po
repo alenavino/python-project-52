@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-18 13:04+0300\n"
+"POT-Creation-Date: 2024-11-19 11:21+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,36 +20,60 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
+#: task_manager/statuses/models.py:7
+#: task_manager/templates/statuses/index.html:15
+msgid "Name"
+msgstr "Имя"
+
+#: task_manager/statuses/views.py:24 task_manager/statuses/views.py:40
+#: task_manager/statuses/views.py:56 task_manager/statuses/views.py:71
+#: task_manager/users/views.py:39 task_manager/users/views.py:61
+msgid "You are not logged in! Please sign in."
+msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
+
+#: task_manager/statuses/views.py:35
+msgid "Status successfully created"
+msgstr "Статус успешно создан"
+
+#: task_manager/statuses/views.py:51
+msgid "Status changed successfully"
+msgstr "Статус успешно изменен"
+
+#: task_manager/statuses/views.py:66
+msgid "Status successfully deleted"
+msgstr "Статус успешно удален"
+
 #: task_manager/templates/base.html:12
 msgid "Task manager Hexlet"
 msgstr "Менеджер задач Hexlet"
 
-#: task_manager/templates/base.html:18
+#: task_manager/templates/base.html:16
 msgid "Task manager"
 msgstr "Менеджер задач"
 
-#: task_manager/templates/base.html:25
-#: task_manager/templates/users/index.html:11
+#: task_manager/templates/base.html:23
+#: task_manager/templates/users/index.html:8
 msgid "Users"
 msgstr "Пользователи"
 
-#: task_manager/templates/base.html:29
+#: task_manager/templates/base.html:27
+#: task_manager/templates/statuses/index.html:8
 msgid "Statuses"
 msgstr "Статусы"
 
-#: task_manager/templates/base.html:32
+#: task_manager/templates/base.html:30
 msgid "Tags"
 msgstr "Метки"
 
-#: task_manager/templates/base.html:35
+#: task_manager/templates/base.html:33
 msgid "Tasks"
 msgstr "Задачи"
 
-#: task_manager/templates/base.html:47 task_manager/templates/login.html:12
+#: task_manager/templates/base.html:45 task_manager/templates/login.html:12
 msgid "Login"
 msgstr "Вход"
 
-#: task_manager/templates/base.html:50
+#: task_manager/templates/base.html:48
 #: task_manager/templates/users/create.html:10
 msgid "Registration"
 msgstr "Регистрация"
@@ -74,61 +98,65 @@ msgstr ""
 "Пожалуйста, введите правильные имя пользователя и пароль. Оба поля могут "
 "быть чувствительны к регистру."
 
-#: task_manager/templates/users/create.html:15
-msgid "First name"
-msgstr "Имя"
+#: task_manager/templates/statuses/create.html:10
+#: task_manager/templates/statuses/index.html:10
+msgid "Create status"
+msgstr "Создать статус"
 
-#: task_manager/templates/users/create.html:15
-msgid "Last name"
-msgstr "Фамилия"
+#: task_manager/templates/statuses/create.html:16
+msgid "Create"
+msgstr "Создать"
 
-#: task_manager/templates/users/create.html:15
-#: task_manager/templates/users/index.html:18
-msgid "Username"
-msgstr "Имя пользователя"
+#: task_manager/templates/statuses/delete.html:11
+msgid "Deleting a status"
+msgstr "Удаление статуса"
 
-#: task_manager/templates/users/create.html:15
-msgid ""
-"Required field. No more than 150 characters. Letters, numbers and symbols "
-"only"
-msgstr ""
-"Обязательное поле. Не более 150 символов. Только буквы, цифры и символы"
+#: task_manager/templates/statuses/delete.html:14
+#: task_manager/templates/users/delete.html:14
+msgid "Are you sure you want to delete the"
+msgstr "Вы уверены, что хотите удалить"
+
+#: task_manager/templates/statuses/delete.html:17
+#: task_manager/templates/users/delete.html:17
+msgid "Yes, delete"
+msgstr "Да, удалить"
+
+#: task_manager/templates/statuses/index.html:16
+#: task_manager/templates/users/index.html:17
+msgid "Creation date"
+msgstr "Дата создания"
+
+#: task_manager/templates/statuses/index.html:28
+#: task_manager/templates/statuses/update.html:17
+#: task_manager/templates/users/index.html:30
+#: task_manager/templates/users/update.html:17
+msgid "Update"
+msgstr "Изменить"
+
+#: task_manager/templates/statuses/index.html:30
+#: task_manager/templates/users/index.html:32
+msgid "Delete"
+msgstr "Удалить"
+
+#: task_manager/templates/statuses/update.html:11
+msgid "Change status"
+msgstr "Изменить статус"
 
 #: task_manager/templates/users/create.html:16
-msgid "Password"
-msgstr "Пароль"
-
-#: task_manager/templates/users/create.html:16
-msgid "Your password must be at least 3 characters long."
-msgstr "Ваш пароль должен содержать как минимум 3 символа."
-
-#: task_manager/templates/users/create.html:17
-msgid "Confirm password"
-msgstr "Подтверждение пароля"
-
-#: task_manager/templates/users/create.html:17
-msgid "To confirm, please enter your password again."
-msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
+msgid "Registrate"
+msgstr "Зарегистрировать"
 
 #: task_manager/templates/users/delete.html:11
 msgid "Deleting a user"
 msgstr "Удаление пользователя"
 
-#: task_manager/templates/users/delete.html:14
-msgid "Are you sure you want to delete the"
-msgstr "Вы уверены, что хотите удалить"
+#: task_manager/templates/users/index.html:15
+msgid "Username"
+msgstr "Имя пользователя"
 
-#: task_manager/templates/users/delete.html:18
-msgid "Yes, delete"
-msgstr "Да, удалить"
-
-#: task_manager/templates/users/index.html:19
+#: task_manager/templates/users/index.html:16
 msgid "Full name"
 msgstr "Полное имя"
-
-#: task_manager/templates/users/index.html:20
-msgid "Creation date"
-msgstr "Дата создания"
 
 #: task_manager/templates/users/update.html:11
 msgid "Change user"
@@ -146,10 +174,6 @@ msgstr "Пользователь успешно зарегистрирован."
 msgid "User Profile is successfully changed"
 msgstr "Пользователь успешно изменен."
 
-#: task_manager/users/views.py:39 task_manager/users/views.py:61
-msgid "You are not logged in! Please sign in."
-msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
-
 #: task_manager/users/views.py:45 task_manager/users/views.py:67
 msgid "You do not have permission to modify another user."
 msgstr "У вас нет прав для изменения другого пользователя."
@@ -165,3 +189,27 @@ msgstr "Вы залогинены"
 #: task_manager/views.py:20
 msgid "You are logged out"
 msgstr "Вы разлогинены"
+
+#~ msgid "First name"
+#~ msgstr "Имя"
+
+#~ msgid "Last name"
+#~ msgstr "Фамилия"
+
+#~ msgid ""
+#~ "Required field. No more than 150 characters. Letters, numbers and symbols "
+#~ "only"
+#~ msgstr ""
+#~ "Обязательное поле. Не более 150 символов. Только буквы, цифры и символы"
+
+#~ msgid "Password"
+#~ msgstr "Пароль"
+
+#~ msgid "Your password must be at least 3 characters long."
+#~ msgstr "Ваш пароль должен содержать как минимум 3 символа."
+
+#~ msgid "Confirm password"
+#~ msgstr "Подтверждение пароля"
+
+#~ msgid "To confirm, please enter your password again."
+#~ msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
