@@ -7,6 +7,7 @@ from django.views.generic import CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
+from django.db.models.deletion import ProtectedError
 
 
 class IndexView(View):
@@ -68,4 +69,12 @@ class UserDeleteView(SuccessMessageMixin, DeleteView):
                     )
                 )
             return redirect('users')
-        return super().dispatch(request, *args, **kwargs)
+        try:
+            return super().dispatch(request, *args, **kwargs)
+        except ProtectedError:
+            messages.error(
+                request, _(
+                    'Cannot delete user because it is in use'
+                    )
+                )
+            return redirect('users')

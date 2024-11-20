@@ -16,3 +16,6 @@ class Task(models.Model):
                                  null=True, verbose_name=_('Executor'),
                                  related_name='Executor')
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
