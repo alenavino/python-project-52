@@ -28,14 +28,11 @@ class TaskViewsTest(TaskTestCase):
         self.assertContains(response, self.task1.name)
         self.assertContains(response, self.task2.name)
 
-    # def test_filter_with_label(self):
-    #     self.client.force_login(self.user1)
-    #     response = self.client.get(reverse_lazy('tasks'),
-    #                                {"labels": self.label2.pk})
-    #     self.assertEqual(response.context['tasks'].count(), 1)
-    #     self.assertNotContains(response, self.task1.name)
-    #     self.assertNotContains(response, self.task2.name)
-    #     self.assertContains(response, self.task3.name)
+        response = self.client.get(reverse_lazy('tasks'),
+                                   {"labels": self.label1.pk})
+        self.assertEqual(response.context['tasks'].count(), 2)
+        self.assertContains(response, self.task1.name)
+        self.assertContains(response, self.task2.name)
 
         response = self.client.get(reverse_lazy('tasks'), {"self_tasks": "on"})
         self.assertEqual(response.context['tasks'].count(), 1)
@@ -56,7 +53,8 @@ class TaskViewsTest(TaskTestCase):
             'name': 'Task 3',
             'description': 'Description 3',
             'status': 1,
-            'executor': 1
+            'executor': 1,
+            'labels': 2
         })
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse_lazy('tasks'))
@@ -93,7 +91,8 @@ class TaskViewsTest(TaskTestCase):
             'name': 'Task 4',
             'description': 'Description 4',
             'status': 2,
-            'executor': 2
+            'executor': 2,
+            'labels': 1
         })
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse_lazy('tasks'))

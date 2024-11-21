@@ -51,8 +51,9 @@ class TaskView(View):
 
     def get(self, request, **kwargs):
         task = get_object_or_404(Task, id=kwargs['pk'])
+        labels = list(Task.objects.get(id=kwargs['pk']).labels.all())
         return render(request, 'tasks/show.html', context={
-            'task': task,
+            'task': task, 'labels': labels
         })
 
     def dispatch(self, request, *args, **kwargs):
