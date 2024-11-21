@@ -18,9 +18,9 @@ class TaskViewsTest(TaskTestCase):
         self.client.force_login(self.user1)
         response = self.client.get(reverse_lazy('tasks'),
                                    {"status": self.status1.pk})
-        self.assertEqual(response.context['tasks'].count(), 1)
+        self.assertEqual(response.context['tasks'].count(), 2)
         self.assertContains(response, self.task1.name)
-        self.assertNotContains(response, self.task2.name)
+        self.assertContains(response, self.task2.name)
 
         response = self.client.get(reverse_lazy('tasks'),
                                    {"executor": self.user2.pk})

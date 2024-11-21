@@ -9,7 +9,7 @@ class TaskFormsTest(TaskTestCase):
             'description': 'Description 3',
             'status': 1,
             'executor': 1,
-            'labels': 1
+            'labels': [1]
         })
         self.assertTrue(form.is_valid())
 
@@ -18,7 +18,7 @@ class TaskFormsTest(TaskTestCase):
             'description': '',
             'status': 1,
             'executor': 1,
-            'labels': 1
+            'labels': [1]
         })
         self.assertFalse(form.is_valid())
 
@@ -27,6 +27,6 @@ class TaskFormsTest(TaskTestCase):
             'description': 'Description 3',
             'status': 1,
             'executor': 1,
-            'labels': 1
+            'labels': [1]
         })
         self.assertFalse(form.is_valid())

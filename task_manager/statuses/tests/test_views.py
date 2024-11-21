@@ -54,20 +54,20 @@ class StatusViewsTest(StatusTestCase):
 
     def test_delete_status(self):
         response = self.client.get(reverse_lazy('status_delete', kwargs={
-            'pk': self.status1.id
+            'pk': self.status2.id
             }))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse_lazy('login'))
 
         self.client.force_login(self.user1)
         response = self.client.get(reverse_lazy('status_delete', kwargs={
-            'pk': self.status1.id
+            'pk': self.status2.id
             }))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'statuses/delete.html')
 
         response = self.client.post(reverse_lazy('status_delete', kwargs={
-            'pk': self.status1.id
+            'pk': self.status2.id
             }))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse_lazy('statuses'))
