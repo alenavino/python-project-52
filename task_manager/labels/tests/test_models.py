@@ -6,6 +6,6 @@ class LabelModelTest(LabelTestCase):
 
     def test(self):
         self.my_model = Label.objects.create(
-            name='new_label')
+            name='label')
 
-        self.assertEqual(self.my_model.name, 'new_label')
+        self.assertEqual(self.my_model.name, 'label')

@@ -64,7 +64,7 @@ class LabelViewsTest(LabelTestCase):
             'pk': self.label1.id
             }))
         self.assertEqual(response.status_code, 302)
-        self.assertTemplateUsed(response, reverse_lazy('labels'))
+        self.assertRedirects(response, reverse_lazy('labels'))
 
         response = self.client.get(reverse_lazy('label_delete', kwargs={
             'pk': self.label2.id
