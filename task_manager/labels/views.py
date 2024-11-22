@@ -8,9 +8,10 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 from django.views import View
+from task_manager.mixins import Login_mixin
 
 
-class IndexView(View):
+class IndexView(Login_mixin, View):
 
     def get(self, request):
         labels = Label.objects.all()
@@ -18,45 +19,21 @@ class IndexView(View):
             'labels': labels,
         })
 
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            messages.error(
-                request, _('You are not logged in! Please sign in.')
-                )
-            return redirect('login')
-        return super().dispatch(request, *args, **kwargs)
 
-
-class LabelCreateView(SuccessMessageMixin, CreateView):
+class LabelCreateView(Login_mixin, SuccessMessageMixin, CreateView):
     model = Label
     form_class = LabelForm
     template_name = 'labels/create.html'
     success_url = reverse_lazy('labels')
     success_message = _('Label successfully created')
 
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            messages.error(
-                request, _('You are not logged in! Please sign in.')
-                )
-            return redirect('login')
-        return super().dispatch(request, *args, **kwargs)
 
-
-class LabelUpdateView(SuccessMessageMixin, UpdateView):
+class LabelUpdateView(Login_mixin, SuccessMessageMixin, UpdateView):
     model = Label
     form_class = LabelForm
     template_name = 'labels/update.html'
     success_url = reverse_lazy('labels')
     success_message = _('Label changed successfully')
-
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            messages.error(
-                request, _('You are not logged in! Please sign in.')
-                )
-            return redirect('login')
-        return super().dispatch(request, *args, **kwargs)
 
 
 class LabelDeleteView(SuccessMessageMixin, DeleteView):
