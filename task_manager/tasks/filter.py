@@ -1,11 +1,15 @@
-import django_filters
+from django_filters import FilterSet, ModelChoiceFilter, BooleanFilter
+from task_manager.labels.models import Label
 from .models import Task
 from django.forms.widgets import CheckboxInput
 from django.utils.translation import gettext_lazy as _
 
 
-class TaskFilter(django_filters.FilterSet):
-    self_tasks = django_filters.BooleanFilter(
+class TaskFilter(FilterSet):
+
+    labels = ModelChoiceFilter(queryset=Label.objects.all(), label=_('Label'))
+
+    self_tasks = BooleanFilter(
         widget=CheckboxInput,
         label=_('Only their own tasks'),
         method='filter_self_tasks',
