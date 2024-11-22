@@ -8,10 +8,10 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 from django.db.models.deletion import ProtectedError
-from task_manager.mixins import Login_mixin
+from task_manager.mixins import LoginMixin
 
 
-class IndexView(Login_mixin, View):
+class IndexView(LoginMixin, View):
 
     def get(self, request):
         statuses = Status.objects.all()
@@ -20,7 +20,7 @@ class IndexView(Login_mixin, View):
         })
 
 
-class StatusCreateView(Login_mixin, SuccessMessageMixin, CreateView):
+class StatusCreateView(LoginMixin, SuccessMessageMixin, CreateView):
     model = Status
     form_class = StatusForm
     template_name = 'statuses/create.html'
@@ -28,7 +28,7 @@ class StatusCreateView(Login_mixin, SuccessMessageMixin, CreateView):
     success_message = _('Status successfully created')
 
 
-class StatusUpdateView(Login_mixin, SuccessMessageMixin, UpdateView):
+class StatusUpdateView(LoginMixin, SuccessMessageMixin, UpdateView):
     model = Status
     form_class = StatusForm
     template_name = 'statuses/update.html'

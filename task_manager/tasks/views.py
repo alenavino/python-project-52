@@ -9,17 +9,17 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 from django.views import View
-from task_manager.mixins import Login_mixin
+from task_manager.mixins import LoginMixin
 
 
-class IndexView(Login_mixin, FilterView):
+class IndexView(LoginMixin, FilterView):
     model = Task
     filterset_class = TaskFilter
     template_name = 'tasks/index.html'
     context_object_name = 'tasks'
 
 
-class TaskCreateView(Login_mixin, SuccessMessageMixin, CreateView):
+class TaskCreateView(LoginMixin, SuccessMessageMixin, CreateView):
     model = Task
     form_class = TaskForm
     template_name = 'tasks/create.html'
@@ -31,7 +31,7 @@ class TaskCreateView(Login_mixin, SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
 
-class TaskView(Login_mixin, View):
+class TaskView(LoginMixin, View):
 
     def get(self, request, **kwargs):
         task = get_object_or_404(Task, id=kwargs['pk'])
@@ -41,7 +41,7 @@ class TaskView(Login_mixin, View):
         })
 
 
-class TaskUpdateView(Login_mixin, SuccessMessageMixin, UpdateView):
+class TaskUpdateView(LoginMixin, SuccessMessageMixin, UpdateView):
     model = Task
     form_class = TaskForm
     template_name = 'tasks/update.html'

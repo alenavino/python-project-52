@@ -8,10 +8,10 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 from django.views import View
-from task_manager.mixins import Login_mixin
+from task_manager.mixins import LoginMixin
 
 
-class IndexView(Login_mixin, View):
+class IndexView(LoginMixin, View):
 
     def get(self, request):
         labels = Label.objects.all()
@@ -20,7 +20,7 @@ class IndexView(Login_mixin, View):
         })
 
 
-class LabelCreateView(Login_mixin, SuccessMessageMixin, CreateView):
+class LabelCreateView(LoginMixin, SuccessMessageMixin, CreateView):
     model = Label
     form_class = LabelForm
     template_name = 'labels/create.html'
@@ -28,7 +28,7 @@ class LabelCreateView(Login_mixin, SuccessMessageMixin, CreateView):
     success_message = _('Label successfully created')
 
 
-class LabelUpdateView(Login_mixin, SuccessMessageMixin, UpdateView):
+class LabelUpdateView(LoginMixin, SuccessMessageMixin, UpdateView):
     model = Label
     form_class = LabelForm
     template_name = 'labels/update.html'
