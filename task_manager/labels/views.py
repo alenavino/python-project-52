@@ -50,8 +50,8 @@ class LabelDeleteView(SuccessMessageMixin, DeleteView):
             return redirect('login')
         else:
             return super().dispatch(request, *args, **kwargs)
-    
-    def delete(self, request, *args, **kwargs):
+
+    def post(self, request, *args, **kwargs):
         if Task.objects.filter(labels=kwargs['pk']):
             messages.error(
                 request, _(
@@ -59,5 +59,4 @@ class LabelDeleteView(SuccessMessageMixin, DeleteView):
                 )
             )
             return redirect('labels')
-        else:
-            return super().delete(request, *args, **kwargs)
+        return super().post(request, *args, **kwargs)
