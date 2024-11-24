@@ -48,12 +48,16 @@ class LabelDeleteView(SuccessMessageMixin, DeleteView):
                 request, _('You are not logged in! Please sign in.')
             )
             return redirect('login')
-        # elif Task.objects.filter(labels=kwargs['pk']):
-        #     messages.error(
-        #         request, _(
-        #             'Cannot delete label because it is in use'
-        #         )
-        #     )
-        #     return redirect('labels')
         else:
             return super().dispatch(request, *args, **kwargs)
+    
+    def delete(self, request, *args, **kwargs):
+        if Task.objects.filter(labels=kwargs['pk']):
+            messages.error(
+                request, _(
+                    'Cannot delete label because it is in use'
+                )
+            )
+            return redirect('labels')
+        else:
+            return super().delete(request, *args, **kwargs)
