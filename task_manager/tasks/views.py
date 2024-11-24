@@ -53,7 +53,7 @@ class TaskDeleteView(SuccessMessageMixin, DeleteView):
     model = Task
     template_name = 'tasks/delete.html'
     success_url = reverse_lazy('tasks')
-    success_message = 'Task successfully deleted'
+    success_message = _('Task successfully deleted')
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
