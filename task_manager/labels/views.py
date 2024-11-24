@@ -39,7 +39,7 @@ class LabelUpdateView(LoginMixin, SuccessMessageMixin, UpdateView):
 class LabelDeleteView(SuccessMessageMixin, DeleteView):
     model = Label
     template_name = 'labels/delete.html'
-    success_url = reverse_lazy('statuses')
+    success_url = reverse_lazy('labels')
     success_message = _('Label successfully deleted')
 
     def dispatch(self, request, *args, **kwargs):
