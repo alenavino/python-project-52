@@ -17,5 +17,8 @@ translate:
 test:
 	poetry run python manage.py test
 
+test-coverage:
+	poetry run coverage run manage.py test
+
 lint:
 	poetry run flake8 task_manager

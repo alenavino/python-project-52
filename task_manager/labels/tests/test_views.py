@@ -63,8 +63,20 @@ class LabelViewsTest(LabelTestCase):
         response = self.client.get(reverse_lazy('label_delete', kwargs={
             'pk': self.label1.id
         }))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'labels/delete.html')
+
+        response = self.client.post(reverse_lazy('label_delete', kwargs={
+            'pk': self.label1.id
+        }))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse_lazy('labels'))
+
+        response = self.client.get(reverse_lazy('label_delete', kwargs={
+            'pk': self.label1.id
+        }))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'labels/delete.html')
 
         response = self.client.get(reverse_lazy('label_delete', kwargs={
             'pk': self.label2.id
@@ -77,3 +89,8 @@ class LabelViewsTest(LabelTestCase):
         }))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse_lazy('labels'))
+
+        response = self.client.get(reverse_lazy('label_delete', kwargs={
+            'pk': self.label2.id
+        }))
+        self.assertEqual(response.status_code, 404)
