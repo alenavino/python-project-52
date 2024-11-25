@@ -7,7 +7,7 @@
 <h1 class="my-4">    
 {% trans 'Tasks' %}
 </h1>
-<a class="btn btn-primary mb-3" href="/tasks/create/">{% trans 'Create task' %}</a>
+<a class="btn btn-primary mb-3" href="{% url 'task_create' %}">{% trans 'Create task' %}</a>
 <div class="card mb-3">
     <div class="card-body bg-light">
         <form class="form-inline center" method="get">
@@ -35,16 +35,16 @@
         <tr>
           <td>{{ task.id }}</td>
           <td>
-            <a href="/tasks/{{ task.id }}">{{ task.name }}</a>
+            <a href="{% url 'task_show' pk=task.id %}">{{ task.name }}</a>
           </td>
           <td>{{ task.status }}</td>
           <td>{{ task.author }}</td>
           <td>{{ task.executor }}</td>
           <td>{{ task.created_at }}</td>
           <td>
-            <a href="/tasks/{{ task.id }}/update/">{% trans 'Update' %}</a>
+            <a href="{% url 'task_update' pk=task.id %}">{% trans 'Update' %}</a>
             <br>
-            <a href="/tasks/{{ task.id }}/delete/">{% trans 'Delete' %}</a>
+            <a href="{% url 'task_delete' pk=task.id %}">{% trans 'Delete' %}</a>
           </td>
         </tr>
       {% endfor %}
