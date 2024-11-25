@@ -36,20 +36,11 @@ class LabelUpdateView(LoginMixin, SuccessMessageMixin, UpdateView):
     success_message = _('Label changed successfully')
 
 
-class LabelDeleteView(SuccessMessageMixin, DeleteView):
+class LabelDeleteView(LoginMixin, SuccessMessageMixin, DeleteView):
     model = Label
     template_name = 'labels/delete.html'
     success_url = reverse_lazy('labels')
     success_message = _('Label successfully deleted')
-
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            messages.error(
-                request, _('You are not logged in! Please sign in.')
-            )
-            return redirect('login')
-        else:
-            return super().dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         if Task.objects.filter(labels=kwargs['pk']):
