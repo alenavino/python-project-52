@@ -29,7 +29,7 @@
           <td>
             <a href="{% url 'user_update' pk=user.id %}">{% trans 'Update' %}</a>
             <br>
-            <a href="{% url 'task_delete' pk=user.id %}">{% trans 'Delete' %}</a>
+            <a href="{% url 'user_delete' pk=user.id %}">{% trans 'Delete' %}</a>
           </td>
         </tr>
       {% endfor %}
