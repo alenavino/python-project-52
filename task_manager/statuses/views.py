@@ -46,7 +46,7 @@ class StatusDeleteView(SuccessMessageMixin, DeleteView):
         if not request.user.is_authenticated:
             messages.error(
                 request, _('You are not logged in! Please sign in.')
-                )
+            )
             return redirect('login')
         try:
             return super().dispatch(request, *args, **kwargs)
@@ -54,6 +54,6 @@ class StatusDeleteView(SuccessMessageMixin, DeleteView):
             messages.error(
                 request, _(
                     'Cannot delete status because it is in use'
-                    )
                 )
+            )
             return redirect('statuses')

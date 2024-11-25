@@ -38,14 +38,14 @@ class UserUpdateView(SuccessMessageMixin, UpdateView):
         if not request.user.is_authenticated:
             messages.error(
                 request, _('You are not logged in! Please sign in.')
-                )
+            )
             return redirect('login')
         elif request.user.pk != self.get_object().pk:
             messages.error(
                 request, _(
                     'You do not have permission to modify another user.'
-                    )
                 )
+            )
             return redirect('users')
         return super().dispatch(request, *args, **kwargs)
 
@@ -60,14 +60,14 @@ class UserDeleteView(SuccessMessageMixin, DeleteView):
         if not request.user.is_authenticated:
             messages.error(
                 request, _('You are not logged in! Please sign in.')
-                )
+            )
             return redirect('login')
         elif request.user.pk != self.get_object().pk:
             messages.error(
                 request, _(
                     'You do not have permission to modify another user.'
-                    )
                 )
+            )
             return redirect('users')
         try:
             return super().dispatch(request, *args, **kwargs)
@@ -75,6 +75,6 @@ class UserDeleteView(SuccessMessageMixin, DeleteView):
             messages.error(
                 request, _(
                     'Cannot delete user because it is in use'
-                    )
                 )
+            )
             return redirect('users')

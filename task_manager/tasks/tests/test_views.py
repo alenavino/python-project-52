@@ -74,20 +74,20 @@ class TaskViewsTest(TaskTestCase):
     def test_update_task(self):
         response = self.client.get(reverse_lazy('task_update', kwargs={
             'pk': self.task1.pk
-            }))
+        }))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse_lazy('login'))
 
         self.client.force_login(self.user1)
         response = self.client.get(reverse_lazy('task_update', kwargs={
             'pk': self.task1.pk
-            }))
+        }))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'tasks/update.html')
 
         response = self.client.post(reverse_lazy('task_update', kwargs={
             'pk': self.task1.pk
-            }), data={
+        }), data={
             'name': 'Task 4',
             'description': 'Description 4',
             'status': 2,
@@ -100,26 +100,26 @@ class TaskViewsTest(TaskTestCase):
     def test_delete_task(self):
         response = self.client.get(reverse_lazy('task_delete', kwargs={
             'pk': self.task1.pk
-            }))
+        }))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse_lazy('login'))
 
         self.client.force_login(self.user2)
         response = self.client.get(reverse_lazy('task_delete', kwargs={
             'pk': self.task1.pk
-            }))
+        }))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse_lazy('tasks'))
 
         self.client.force_login(self.user1)
         response = self.client.get(reverse_lazy('task_delete', kwargs={
             'pk': self.task1.pk
-            }))
+        }))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'tasks/delete.html')
 
         response = self.client.post(reverse_lazy('task_delete', kwargs={
             'pk': self.task1.pk
-            }))
+        }))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse_lazy('tasks'))

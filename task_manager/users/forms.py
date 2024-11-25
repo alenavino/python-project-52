@@ -9,7 +9,7 @@ class UserForm(UserCreationForm):
         model = User
         fields = [
             'first_name', 'last_name', 'username', 'password1', 'password2'
-            ]
+        ]
 
 
 class UserUpdateForm(UserForm):
@@ -17,7 +17,7 @@ class UserUpdateForm(UserForm):
         model = User
         fields = [
             'first_name', 'last_name', 'username', 'password1', 'password2'
-            ]
+        ]
 
     def clean_username(self):
         username = self.cleaned_data['username']

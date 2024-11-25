@@ -11,7 +11,7 @@ class TaskModelTest(TaskTestCase):
             description='Description 3',
             status=self.status1,
             executor=self.user1,
-            )
+        )
 
         self.my_model.labels.add(self.label1)
 
