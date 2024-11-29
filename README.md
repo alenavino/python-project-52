@@ -14,12 +14,6 @@
 ![Home](https://github.com/user-attachments/assets/55966f64-b35e-44e0-863b-4fc10eb60f88)
 ### List of tasks:
 ![Tasks](https://github.com/user-attachments/assets/8435a3a0-30c7-4941-9e78-e50a27253c53)
-
-## Dependencies
-
-- python = "^3.10"
-- poetry = "^1.8.3"
-
 # Install & start
 
 ```
