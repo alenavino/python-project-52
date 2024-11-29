@@ -1,23 +1,19 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from task_manager.labels.models import Label
 from task_manager.tasks.models import Task
 from .forms import LabelForm
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
-from django.views import View
 from task_manager.mixins import LoginMixin
 
 
-class IndexView(LoginMixin, View):
-
-    def get(self, request):
-        labels = Label.objects.all()
-        return render(request, 'labels/index.html', context={
-            'labels': labels,
-        })
+class IndexView(LoginMixin, ListView):
+    model = Label
+    template_name = 'labels/index.html'
+    context_object_name = 'labels'
 
 
 class LabelCreateView(LoginMixin, SuccessMessageMixin, CreateView):

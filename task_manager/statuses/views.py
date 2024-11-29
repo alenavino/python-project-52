@@ -1,9 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from task_manager.statuses.models import Status
 from .forms import StatusForm
 from django.urls import reverse_lazy
-from django.views import View
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
@@ -11,13 +10,10 @@ from django.db.models.deletion import ProtectedError
 from task_manager.mixins import LoginMixin
 
 
-class IndexView(LoginMixin, View):
-
-    def get(self, request):
-        statuses = Status.objects.all()
-        return render(request, 'statuses/index.html', context={
-            'statuses': statuses,
-        })
+class IndexView(LoginMixin, ListView):
+    model = Status
+    template_name = 'statuses/index.html'
+    context_object_name = 'statuses'
 
 
 class StatusCreateView(LoginMixin, SuccessMessageMixin, CreateView):

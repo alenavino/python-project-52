@@ -1,22 +1,18 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from task_manager.users.models import User
 from .forms import UserForm, UserUpdateForm
 from django.urls import reverse_lazy
-from django.views import View
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 from django.db.models.deletion import ProtectedError
 
 
-class IndexView(View):
-
-    def get(self, request):
-        users = User.objects.all()[:15]
-        return render(request, 'users/index.html', context={
-            'users': users,
-        })
+class IndexView(ListView):
+    model = User
+    template_name = 'users/index.html'
+    context_object_name = 'users'
 
 
 class UserCreateView(SuccessMessageMixin, CreateView):
