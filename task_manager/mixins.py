@@ -14,21 +14,6 @@ class LoginMixin(LoginRequiredMixin):
         return super().dispatch(request, *args, **kwargs)
 
 
-class AuthorPermissionMixin(UserPassesTestMixin):
-    permission_denied_url = None
-    redirect_field_name = None
-
-    def test_func(self):
-        return self.get_object().author == self.request.user
-
-    def dispatch(self, request, *args, **kwargs):
-        user_test_result = self.get_test_func()()
-        if not user_test_result:
-            messages.error(request, self.permission_denied_message)
-            return redirect(self.permission_denied_url)
-        return super().dispatch(request, *args, **kwargs)
-
-
 class UserPermissionMixin(UserPassesTestMixin):
     permission_denied_url = None
     redirect_field_name = None

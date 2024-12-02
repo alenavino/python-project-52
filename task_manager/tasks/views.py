@@ -5,10 +5,8 @@ from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import CreateView, DeleteView, UpdateView
 from django_filters.views import FilterView
-
-from task_manager.mixins import AuthorPermissionMixin, LoginMixin
+from task_manager.mixins import UserPermissionMixin, LoginMixin
 from task_manager.tasks.models import Task
-
 from .filter import TaskFilter
 from .forms import TaskForm
 
@@ -50,7 +48,7 @@ class TaskUpdateView(LoginMixin, SuccessMessageMixin, UpdateView):
 
 
 class TaskDeleteView(
-    LoginMixin, AuthorPermissionMixin, SuccessMessageMixin, DeleteView
+    LoginMixin, UserPermissionMixin, SuccessMessageMixin, DeleteView
 ):
     model = Task
     template_name = "tasks/delete.html"
@@ -58,3 +56,6 @@ class TaskDeleteView(
     success_message = _("Task successfully deleted")
     permission_denied_message = _("A task can only be deleted by its author.")
     permission_denied_url = reverse_lazy("tasks")
+
+    def test_func(self):
+        return self.get_object().author == self.request.user
