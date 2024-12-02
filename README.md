@@ -27,7 +27,7 @@ git clone git@github.com:alenavino/python-project-52.git
 cd python-project-52/
 ```
 
-Create a file .env in the root of the project and add the variables SECRET_KEY, DEBUG, ACCESS_TOKEN and DATABASE_URL to it
+Create a file .env in the root of the project and add the variables SECRET_KEY, DEBUG, ACCESS_TOKEN, RENDER_EXTERNAL_HOSTNAME and DATABASE_URL to it
 
 ```
 # install poetry

@@ -1,12 +1,10 @@
-from django.shortcuts import redirect
 from task_manager.users.models import User
 from .forms import UserForm, UserUpdateForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
-from django.contrib import messages
-from django.db.models.deletion import ProtectedError
+from task_manager.mixins import LoginMixin, UserPermissionMixin, ProtectedErrorMixin
 
 
 class IndexView(ListView):
@@ -23,54 +21,22 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     success_message = _('User is successfully registered')
 
 
-class UserUpdateView(SuccessMessageMixin, UpdateView):
+class UserUpdateView(LoginMixin, UserPermissionMixin, SuccessMessageMixin, UpdateView):
     model = User
     form_class = UserUpdateForm
     template_name = 'users/update.html'
     success_url = reverse_lazy('users')
     success_message = _('User Profile is successfully changed')
-
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            messages.error(
-                request, _('You are not logged in! Please sign in.')
-            )
-            return redirect('login')
-        elif request.user.pk != self.get_object().pk:
-            messages.error(
-                request, _(
-                    'You do not have permission to modify another user.'
-                )
-            )
-            return redirect('users')
-        return super().dispatch(request, *args, **kwargs)
+    permission_denied_message = _('You do not have permission to modify another user.')
+    permission_denied_url = reverse_lazy('users')
 
 
-class UserDeleteView(SuccessMessageMixin, DeleteView):
+class UserDeleteView(LoginMixin, UserPermissionMixin, ProtectedErrorMixin,
+                     SuccessMessageMixin, DeleteView):
     model = User
     template_name = 'users/delete.html'
     success_url = reverse_lazy('users')
     success_message = _('User successfully deleted')
-
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            messages.error(
-                request, _('You are not logged in! Please sign in.')
-            )
-            return redirect('login')
-        elif request.user.pk != self.get_object().pk:
-            messages.error(
-                request, _(
-                    'You do not have permission to modify another user.'
-                )
-            )
-            return redirect('users')
-        try:
-            return super().dispatch(request, *args, **kwargs)
-        except ProtectedError:
-            messages.error(
-                request, _(
-                    'Cannot delete user because it is in use'
-                )
-            )
-            return redirect('users')
+    permission_denied_message = _('You do not have permission to modify another user.')
+    permission_denied_url = reverse_lazy('users')
+    protected_error_message = _('Cannot delete user because it is in use')

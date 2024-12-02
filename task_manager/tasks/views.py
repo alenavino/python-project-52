@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from task_manager.tasks.models import Task
 from .forms import TaskForm
 from .filter import TaskFilter
@@ -7,9 +7,8 @@ from django_filters.views import FilterView
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
-from django.contrib import messages
 from django.views import View
-from task_manager.mixins import LoginMixin
+from task_manager.mixins import LoginMixin, AuthorPermissionMixin
 
 
 class IndexView(LoginMixin, FilterView):
@@ -49,21 +48,10 @@ class TaskUpdateView(LoginMixin, SuccessMessageMixin, UpdateView):
     success_message = _('Task changed successfully')
 
 
-class TaskDeleteView(SuccessMessageMixin, DeleteView):
+class TaskDeleteView(LoginMixin, AuthorPermissionMixin, SuccessMessageMixin, DeleteView):
     model = Task
     template_name = 'tasks/delete.html'
     success_url = reverse_lazy('tasks')
     success_message = _("Task successfully deleted")
-
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            messages.error(
-                request, _('You are not logged in! Please sign in.')
-            )
-            return redirect('login')
-        elif request.user != self.get_object().author:
-            messages.error(
-                request, _('A task can only be deleted by its author.')
-            )
-            return redirect('tasks')
-        return super().dispatch(request, *args, **kwargs)
+    permission_denied_message = _('A task can only be deleted by its author.')
+    permission_denied_url = reverse_lazy('tasks')
