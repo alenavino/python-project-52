@@ -9,34 +9,39 @@ from task_manager.mixins import LoginMixin, UserPermissionMixin, ProtectedErrorM
 
 class IndexView(ListView):
     model = User
-    template_name = 'users/index.html'
-    context_object_name = 'users'
+    template_name = "users/index.html"
+    context_object_name = "users"
 
 
 class UserCreateView(SuccessMessageMixin, CreateView):
     model = User
     form_class = UserForm
-    template_name = 'users/create.html'
-    success_url = reverse_lazy('login')
-    success_message = _('User is successfully registered')
+    template_name = "users/create.html"
+    success_url = reverse_lazy("login")
+    success_message = _("User is successfully registered")
 
 
 class UserUpdateView(LoginMixin, UserPermissionMixin, SuccessMessageMixin, UpdateView):
     model = User
     form_class = UserUpdateForm
-    template_name = 'users/update.html'
-    success_url = reverse_lazy('users')
-    success_message = _('User Profile is successfully changed')
-    permission_denied_message = _('You do not have permission to modify another user.')
-    permission_denied_url = reverse_lazy('users')
+    template_name = "users/update.html"
+    success_url = reverse_lazy("users")
+    success_message = _("User Profile is successfully changed")
+    permission_denied_message = _("You do not have permission to modify another user.")
+    permission_denied_url = reverse_lazy("users")
 
 
-class UserDeleteView(LoginMixin, UserPermissionMixin, ProtectedErrorMixin,
-                     SuccessMessageMixin, DeleteView):
+class UserDeleteView(
+    LoginMixin,
+    UserPermissionMixin,
+    ProtectedErrorMixin,
+    SuccessMessageMixin,
+    DeleteView,
+):
     model = User
-    template_name = 'users/delete.html'
-    success_url = reverse_lazy('users')
-    success_message = _('User successfully deleted')
-    permission_denied_message = _('You do not have permission to modify another user.')
-    permission_denied_url = reverse_lazy('users')
-    protected_error_message = _('Cannot delete user because it is in use')
+    template_name = "users/delete.html"
+    success_url = reverse_lazy("users")
+    success_message = _("User successfully deleted")
+    permission_denied_message = _("You do not have permission to modify another user.")
+    permission_denied_url = reverse_lazy("users")
+    protected_error_message = _("Cannot delete user because it is in use")

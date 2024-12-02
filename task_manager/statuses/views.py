@@ -9,30 +9,32 @@ from task_manager.mixins import LoginMixin, ProtectedErrorMixin
 
 class IndexView(LoginMixin, ListView):
     model = Status
-    template_name = 'statuses/index.html'
-    context_object_name = 'statuses'
+    template_name = "statuses/index.html"
+    context_object_name = "statuses"
 
 
 class StatusCreateView(LoginMixin, SuccessMessageMixin, CreateView):
     model = Status
     form_class = StatusForm
-    template_name = 'statuses/create.html'
-    success_url = reverse_lazy('statuses')
-    success_message = _('Status successfully created')
+    template_name = "statuses/create.html"
+    success_url = reverse_lazy("statuses")
+    success_message = _("Status successfully created")
 
 
 class StatusUpdateView(LoginMixin, SuccessMessageMixin, UpdateView):
     model = Status
     form_class = StatusForm
-    template_name = 'statuses/update.html'
-    success_url = reverse_lazy('statuses')
-    success_message = _('Status changed successfully')
+    template_name = "statuses/update.html"
+    success_url = reverse_lazy("statuses")
+    success_message = _("Status changed successfully")
 
 
-class StatusDeleteView(LoginMixin, ProtectedErrorMixin, SuccessMessageMixin, DeleteView):
+class StatusDeleteView(
+    LoginMixin, ProtectedErrorMixin, SuccessMessageMixin, DeleteView
+):
     model = Status
-    template_name = 'statuses/delete.html'
-    success_url = reverse_lazy('statuses')
-    success_message = _('Status successfully deleted')
-    protected_error_message = _('Cannot delete status because it is in use')
-    permission_denied_url = reverse_lazy('statuses')
+    template_name = "statuses/delete.html"
+    success_url = reverse_lazy("statuses")
+    success_message = _("Status successfully deleted")
+    protected_error_message = _("Cannot delete status because it is in use")
+    permission_denied_url = reverse_lazy("statuses")

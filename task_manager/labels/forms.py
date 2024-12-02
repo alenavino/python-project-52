@@ -3,7 +3,6 @@ from .models import Label
 
 
 class LabelForm(ModelForm):
-
     class Meta:
         model = Label
-        fields = ['name']
+        fields = ["name"]

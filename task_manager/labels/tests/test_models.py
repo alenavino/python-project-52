@@ -3,9 +3,7 @@ from task_manager.labels.models import Label
 
 
 class LabelModelTest(LabelTestCase):
-
     def test(self):
-        self.my_model = Label.objects.create(
-            name='label')
+        self.my_model = Label.objects.create(name="label")
 
-        self.assertEqual(self.my_model.name, 'label')
+        self.assertEqual(self.my_model.name, "label")

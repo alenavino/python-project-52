@@ -3,7 +3,7 @@ from task_manager.users.models import User
 
 
 class UserTestCase(TestCase):
-    fixtures = ['test_user.json']
+    fixtures = ["test_user.json"]
 
     def setUp(self):
         self.client = Client()

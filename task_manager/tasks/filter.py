@@ -6,13 +6,12 @@ from django.utils.translation import gettext_lazy as _
 
 
 class TaskFilter(FilterSet):
-
-    labels = ModelChoiceFilter(queryset=Label.objects.all(), label=_('Label'))
+    labels = ModelChoiceFilter(queryset=Label.objects.all(), label=_("Label"))
 
     self_tasks = BooleanFilter(
         widget=CheckboxInput,
-        label=_('Only their own tasks'),
-        method='filter_self_tasks',
+        label=_("Only their own tasks"),
+        method="filter_self_tasks",
     )
 
     def filter_self_tasks(self, queryset, name, value):
@@ -23,4 +22,4 @@ class TaskFilter(FilterSet):
 
     class Meta:
         model = Task
-        fields = ['status', 'executor', 'labels']
+        fields = ["status", "executor", "labels"]
