@@ -1,5 +1,5 @@
-from task_manager.users.tests.testcase import UserTestCase
 from task_manager.users.forms import UserForm, UserUpdateForm
+from task_manager.users.tests.testcase import UserTestCase
 
 
 class UserFormsTest(UserTestCase):

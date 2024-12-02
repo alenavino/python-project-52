@@ -1,14 +1,16 @@
-from django.shortcuts import render, get_object_or_404
-from task_manager.tasks.models import Task
-from .forms import TaskForm
-from .filter import TaskFilter
-from django.urls import reverse_lazy
-from django_filters.views import FilterView
-from django.views.generic import CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views import View
-from task_manager.mixins import LoginMixin, AuthorPermissionMixin
+from django.views.generic import CreateView, DeleteView, UpdateView
+from django_filters.views import FilterView
+
+from task_manager.mixins import AuthorPermissionMixin, LoginMixin
+from task_manager.tasks.models import Task
+
+from .filter import TaskFilter
+from .forms import TaskForm
 
 
 class IndexView(LoginMixin, FilterView):

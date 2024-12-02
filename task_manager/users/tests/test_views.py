@@ -1,5 +1,6 @@
-from task_manager.users.tests.testcase import UserTestCase
 from django.urls import reverse_lazy
+
+from task_manager.users.tests.testcase import UserTestCase
 
 
 class UserViewsTest(UserTestCase):

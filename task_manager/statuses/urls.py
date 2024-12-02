@@ -1,11 +1,11 @@
 from django.urls import path
+
 from task_manager.statuses.views import (
     IndexView,
     StatusCreateView,
-    StatusUpdateView,
     StatusDeleteView,
+    StatusUpdateView,
 )
-
 
 urlpatterns = [
     path("", IndexView.as_view(), name="statuses"),

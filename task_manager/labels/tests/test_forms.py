@@ -1,5 +1,5 @@
-from task_manager.labels.tests.testcase import LabelTestCase
 from task_manager.labels.forms import LabelForm
+from task_manager.labels.tests.testcase import LabelTestCase
 
 
 class LabelFormsTest(LabelTestCase):

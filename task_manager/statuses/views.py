@@ -1,10 +1,12 @@
-from task_manager.statuses.models import Status
-from .forms import StatusForm
-from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+
 from task_manager.mixins import LoginMixin, ProtectedErrorMixin
+from task_manager.statuses.models import Status
+
+from .forms import StatusForm
 
 
 class IndexView(LoginMixin, ListView):

@@ -1,13 +1,15 @@
-from django.shortcuts import redirect
-from task_manager.labels.models import Label
-from task_manager.tasks.models import Task
-from .forms import LabelForm
-from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DeleteView, ListView
-from django.contrib.messages.views import SuccessMessageMixin
-from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+
+from task_manager.labels.models import Label
 from task_manager.mixins import LoginMixin
+from task_manager.tasks.models import Task
+
+from .forms import LabelForm
 
 
 class IndexView(LoginMixin, ListView):
@@ -40,6 +42,7 @@ class LabelDeleteView(LoginMixin, SuccessMessageMixin, DeleteView):
 
     def post(self, request, *args, **kwargs):
         if Task.objects.filter(labels=kwargs["pk"]):
-            messages.error(request, _("Cannot delete label because it is in use"))
+            messages.error(request,
+                           _("Cannot delete label because it is in use"))
             return redirect("labels")
         return super().post(request, *args, **kwargs)

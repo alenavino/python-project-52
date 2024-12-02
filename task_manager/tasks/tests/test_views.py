@@ -1,5 +1,6 @@
-from task_manager.tasks.tests.testcase import TaskTestCase
 from django.urls import reverse_lazy
+
+from task_manager.tasks.tests.testcase import TaskTestCase
 
 
 class TaskViewsTest(TaskTestCase):
@@ -15,17 +16,20 @@ class TaskViewsTest(TaskTestCase):
 
     def test_filter(self):
         self.client.force_login(self.user1)
-        response = self.client.get(reverse_lazy("tasks"), {"status": self.status1.pk})
+        response = self.client.get(reverse_lazy("tasks"),
+                                   {"status": self.status1.pk})
         self.assertEqual(response.context["tasks"].count(), 2)
         self.assertContains(response, self.task1.name)
         self.assertContains(response, self.task2.name)
 
-        response = self.client.get(reverse_lazy("tasks"), {"executor": self.user2.pk})
+        response = self.client.get(reverse_lazy("tasks"),
+                                   {"executor": self.user2.pk})
         self.assertEqual(response.context["tasks"].count(), 2)
         self.assertContains(response, self.task1.name)
         self.assertContains(response, self.task2.name)
 
-        response = self.client.get(reverse_lazy("tasks"), {"labels": self.label1.pk})
+        response = self.client.get(reverse_lazy("tasks"),
+                                   {"labels": self.label1.pk})
         self.assertEqual(response.context["tasks"].count(), 2)
         self.assertContains(response, self.task1.name)
         self.assertContains(response, self.task2.name)

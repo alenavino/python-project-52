@@ -1,5 +1,6 @@
-from task_manager.statuses.tests.testcase import StatusTestCase
 from django.urls import reverse_lazy
+
+from task_manager.statuses.tests.testcase import StatusTestCase
 
 
 class StatusViewsTest(StatusTestCase):

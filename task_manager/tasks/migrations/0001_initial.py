@@ -23,7 +23,8 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "name",
-                    models.CharField(max_length=200, unique=True, verbose_name="Name"),
+                    models.CharField(max_length=200, unique=True,
+                                     verbose_name="Name"),
                 ),
                 ("description", models.TextField(verbose_name="Description")),
                 ("created_at", models.DateTimeField(auto_now_add=True)),

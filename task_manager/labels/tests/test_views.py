@@ -1,5 +1,6 @@
-from task_manager.labels.tests.testcase import LabelTestCase
 from django.urls import reverse_lazy
+
+from task_manager.labels.tests.testcase import LabelTestCase
 
 
 class LabelViewsTest(LabelTestCase):

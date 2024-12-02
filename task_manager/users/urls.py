@@ -1,11 +1,11 @@
 from django.urls import path
+
 from task_manager.users.views import (
     IndexView,
     UserCreateView,
-    UserUpdateView,
     UserDeleteView,
+    UserUpdateView,
 )
-
 
 urlpatterns = [
     path("", IndexView.as_view(), name="users"),
